@@ -1,0 +1,17 @@
+body,
+html {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.form {
+    text-align: center;
+}
+input{
+    width: 15px;
+    margin: 5px;
+}
+select{
+    margin: 5px;
+}
+

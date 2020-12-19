@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>主页</title>
+{% endblock %}
+{% block body %}
+<div class='form'>
+
+        系数个数<input style="width: 10px;" type="text" id="max_number_input">个
+        <br>
+        约束条件<input style="width: 10px;" type="text" id="equation_number_input">个
+        <br><button onclick="submit()">下一步</button><br>
+        <form action="/" method="POST" id='form'>
+            <input type="hidden" name="max_number" id="max_number" value="">
+            <input type="hidden" name="equation_number" id="equation_number" value="">
+        </form>
+</div>
+{% endblock %}

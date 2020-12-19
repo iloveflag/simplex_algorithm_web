@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>结果页面</title>
+{% endblock %}
+{% block body %}
+<p style="color: red;">大M用10000表示</p>
+<p style="color: red;">如果θ为负数或0，用100000000表示</p>
+{% for flag in data.values() %}
+    {% for list in flag %}
+    {{list}}:
+        {% for v in flag[list] %}
+            {{v}}
+        {% endfor %}
+    <br>
+    {% endfor %}
+    <br>
+{% endfor %}
+{% endblock %}

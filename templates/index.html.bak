@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>主页</title>
+<script language="JavaScript" type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+{% endblock %}
+{% block body %}
+<div class='form'>
+    <form action='/' method="POST" id='form'>
+        系数个数<input style="width: 10px;" type="text" name="max_number" value="{% if data %}{{data['max_number']}}{% endif %}">个
+        <br>
+        约束条件<input style="width: 10px;" type="text" name="equation_number" value="{% if data %}{{data['equation_number']}}{% endif %}">个
+        <br><button>下一步</button><br>
+
+        {%if data %}
+            {%if data.max_number %}               
+                {% for i in range(data.equation_number|int+1) %}
+                    {% if i == 0 %}<span>max z=</span>{% endif %}
+                        {% for j in range(data.max_number|int) %}
+                            <select name="action{{i}}_{{j+1}}" value="" id="action{{i}}_{{j+1}}">
+                                <option value="plus" id="plus" selected>+</option>
+                                <option value="reduce" id="reduce">-</option>
+                            </select>
+
+                            <input style="width: 10px;" type="text" id="number{{i}}_{{j+1}}" name="number{{i}}_{{j+1}}">
+                            x{{j+1}}
+                        {% endfor %}
+                    {% if i!=0 %}
+                        <span>=</span><input style="width: 20px;" type="text" id="value{{i}}" name="value{{i}}">
+                    {% endif %}
+                    <br>
+                {% endfor %}
+                <button id="submit">下一步</button><br>                
+            {% endif %}
+        {% endif %}
+    </form>
+</div>
+{% endblock %}
