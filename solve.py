@@ -75,7 +75,7 @@ def circulate(data):
         if data['list' + str(i)][pos_x] == 0 or data['b'][i - 1] == 0:  # Theta为0，设为最大,也保证了找到的下标值即除数不为0
             Theta.append(10000000)
         else:
-            Theta_tmp = Fraction(data['b'][i - 1], data['list' + str(i)][pos_x])
+            Theta_tmp = data['b'][i - 1]/ data['list' + str(i)][pos_x]
             if Theta_tmp > 0:  # Theta为负数，设为最大
                 Theta.append(Theta_tmp)
             else:
@@ -83,11 +83,10 @@ def circulate(data):
     data['Theta'] = Theta
     pos_y = Theta.index(min(Theta))
     Divisor = data['list' + str(pos_y + 1)][pos_x]  # 找到的数即除数
-    print(data)
     for i in range(max_number):
         v = data['list' + str(pos_y + 1)][i]
-        data['list' + str(pos_y + 1)][i] = Fraction(v, Divisor)  # 整行除以除数
-    data['b'][pos_y] = Fraction(data['b'][pos_y], Divisor)  # b变化
+        data['list' + str(pos_y + 1)][i] = v/Divisor # 整行除以除数
+    data['b'][pos_y] = data['b'][pos_y]/Divisor  # b变化
     b = data['b'][pos_y]  # 保存下现在的b，后面用于变化其他的b
     for i in range(1, equation_number + 1):
         pos_x_move = data['list' + str(i)][pos_x]  # 先保存下基变量那一列对应的数，用于算出倍数，然后其他相减
@@ -114,6 +113,35 @@ def iteration(rst, i):  # 检验数判断
         rst['flag' + str(i)] = data
         iteration(rst, i)
 
+def qianduan(rst):
+    b = []
+    Cb = []
+    Xb = []
+    check = []
+    Theta = []
+    list_all = []
+    for i in range(len(rst)):
+        list_one = []
+        for j in range(equation_number):
+            list_one.append((rst['flag' + str(i)]['list' + str(j + 1)]))
+        # print(list_one)
+        list_all.append(list_one)
+        b.append(rst['flag' + str(i)]['b'])
+        Cb.append(rst['flag' + str(i)]['Cb'])
+        Xb.append(rst['flag' + str(i)]['Xb'])
+        check.append(rst['flag' + str(i)]['check'])
+        if ('Theta' in rst['flag' + str(i)]):
+            Theta.append(rst['flag' + str(i)]['Theta'])
+    tmp = {}
+    tmp['cj'] = rst['flag0']['list0']
+    tmp['b'] = b
+    tmp['Cb'] = Cb
+    tmp['Xb'] = Xb
+    tmp['check'] = check
+    tmp['Theta'] = Theta
+    tmp['list'] = list_all
+
+    return tmp
 
 def main(data):
     global max_number, equation_number  # 全局一下，很多函数要用
@@ -134,4 +162,8 @@ def main(data):
             temp["Theta"] = value["Theta"]
         temp = value
     del temp["Theta"]
+    # 结束
+
+    # 前端数据对接
+    rst = qianduan(rst)
     return rst
