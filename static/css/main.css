@@ -7,11 +7,21 @@ html {
 .form {
     text-align: center;
 }
-input{
+
+input {
     width: 15px;
     margin: 5px;
 }
-select{
+
+select {
     margin: 5px;
 }
 
+#test span {
+    color: red;
+}
+
+table {
+    text-align: center;
+    margin: 0 auto;
+}

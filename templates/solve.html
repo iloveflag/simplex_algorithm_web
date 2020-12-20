@@ -3,61 +3,15 @@
 <title>结果页面</title>
 {% endblock %}
 {% block body %}
-<p style="color: red;">大M用10000表示</p>
-<p style="color: red;">如果θ为负数或0，用100000000表示</p>
- <table border="1" cellpadding="20" cellspacing="0">
-        <thead  id=""></thead>
-        <tbody id="contain"></tbody>
-    </table>
-    <script>
-        var cj={{ data.cj }};
-        var list={{ data.list }};
-        var Cb={{ data.Cb }};
-        var Xb={{ data.Xb }};
-        var b={{ data.b }};
-        var check={{ data.check }};
-        var Theta={{ data.Theta }};
-        var str1 ='';
-        str1 +='<tr>';
-        str1 +='<td colspan="3">cj</td>';
-        for (var m = 0; m <= cj.length - 1; m++){
-            str1 += `<td>${cj[m]}</td>`;
-        }
-        str1 +='<td rowspan="2">Theta</td>';
-        str1 +='</tr>';
-		for (var k=0;k<list.length;k++){
-            str1 +='<tr>';
-            str1 +='<td>Cb</td>';
-            str1 +='<td>Xb</td>';
-            str1 +='<td>b</td>';
-            for(var p=1;p<=list[0][0].length;p++){
-                str1+='<td>x'+p+'</td>';
-            }
-            for (var i = 0; i <= list[k].length - 1; i++) {
-                str1 += '<tr>';
-                str1 += `<td>${Cb[k][i]}</td>`;
-                str1 += `<td>${Xb[k][i]}</td>`;
-                str1 += `<td>${b[k][i]}</td>`;
-                for (var j = 0; j <= list[k][i].length - 1; j++) {
-                    str1 += `<td>${list[k][i][j]}</td>`;
-                }
-                if(Theta[k]) {
-                    str1 += `<td>${Theta[k][i]}</td>`;
-
-                }
-                str1 += '</tr>';
-            }
-
-            str1 +='</tr>';
-            str1 +='<tr>';
-        str1 +='<td colspan="3">check</td>';
-        for (var o = 0; o <= check[k].length - 1; o++){
-            str1 += `<td>${check[k][o]}</td>`;
-            str1 += '<br>';
-        }
-        str1 +='</tr>';
-        }
-
-        contain.innerHTML = str1;
-    </script>
+<p style="color: red;text-align: center;">大M用10000表示</p>
+<p style="color: red;text-align: center;">如果θ为负数或0，用100000000表示</p>
+<table border="1" cellpadding="20" cellspacing="0">
+    <thead id=""></thead>
+    <tbody id="contain"></tbody>
+</table>
+<p style="color: red;text-align: center;" id="result"></p>
+<script>
+data = {{ data|safe }};
+create_table(data);
+</script>
 {% endblock %}

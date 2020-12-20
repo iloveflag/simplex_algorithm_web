@@ -73,3 +73,71 @@ function submit() {
     button.innerText = "下一步";
     form.appendChild(button);
 }
+
+function create_table(data) {
+    var cj = data['cj'];
+    var list = data['list'];
+    var Cb = data['Cb'];
+    var Xb = data['Xb'];
+    var b = data['b'];
+    var check = data['check'];
+    var Theta = data['Theta'];
+    var str1 = '';
+    str1 += '<tr>';
+    str1 += '<td colspan="3">cj</td>';
+    for (var m = 0; m <= cj.length - 1; m++) {
+        str1 += `<td>${cj[m]}</td>`;
+    }
+    str1 += '<td rowspan="2">θ</td>';
+    str1 += '</tr>';
+    for (var k = 0; k < list.length; k++) {
+        str1 += '<tr>';
+        str1 += '<td>Cb</td>';
+        str1 += '<td>Xb</td>';
+        str1 += '<td>b</td>';
+        for (var p = 1; p <= list[0][0].length; p++) {
+            str1 += '<td>x' + p + '</td>';
+        }
+        for (var i = 0; i <= list[k].length - 1; i++) {
+            str1 += '<tr>';
+            str1 += `<td>${Cb[k][i]}</td>`;
+            str1 += `<td>x${Xb[k][i]}</td>`;
+            str1 += `<td>${b[k][i]}</td>`;
+            for (var j = 0; j <= list[k][i].length - 1; j++) {
+                str1 += `<td>${list[k][i][j]}</td>`;
+            }
+            if (Theta[k]) {
+                if (Theta[k][i] == 10000000) {
+                    str1 += `<td>-</td>`;
+                } else {
+                    str1 += `<td>${Theta[k][i]}</td>`;
+                }
+            }
+            str1 += '</tr>';
+        }
+
+        str1 += '</tr>';
+        str1 += '<tr>';
+        str1 += '<td colspan="3">Cj-Zj</td>';
+        for (var o = 0; o <= check[k].length - 1; o++) {
+            str1 += `<td>${check[k][o]}</td>`;
+            str1 += '<br>';
+        }
+        str1 += '</tr>';
+    }
+    contain.innerHTML = str1;
+    //结果计算
+    var b_last = b[b.length - 1];
+    var Cb_last = Cb[Cb.length - 1];
+    var Xb_last = Xb[Xb.length - 1];
+    var max_x = "";
+    var max_z = 0;
+    for (var i = 0; i < b_last.length; i++) {
+        max_z += b_last[i] * Cb_last[i];
+    }
+    for (var j = 0; j < Xb_last.length; j++) {
+        max_x += "x" + Xb_last[j] + "=" + b_last[j] + ";";
+    }
+    var result = "x的取值为:" + max_x + "<br>最大值z=" + max_z;
+    document.getElementById('result').innerHTML = result;
+}

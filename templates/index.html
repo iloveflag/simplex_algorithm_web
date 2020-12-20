@@ -4,14 +4,26 @@
 {% endblock %}
 {% block body %}
 <div class='form'>
-
-        系数个数<input style="width: 10px;" type="text" id="max_number_input">个
-        <br>
-        约束条件<input style="width: 10px;" type="text" id="equation_number_input">个
-        <br><button onclick="submit()">下一步</button><br>
-        <form action="/" method="POST" id='form'>
-            <input type="hidden" name="max_number" id="max_number" value="">
-            <input type="hidden" name="equation_number" id="equation_number" value="">
-        </form>
+    系数个数<input style="width: 10px;" type="text" id="max_number_input">个
+    <br>
+    约束条件<input style="width: 10px;" type="text" id="equation_number_input">个
+    <br><button onclick="submit()">下一步</button><br>
+    <form action="/" method="POST" id='form'>
+        <input type="hidden" name="max_number" id="max_number" value="">
+        <input type="hidden" name="equation_number" id="equation_number" value="">
+    </form>
+    <span id="test">
+        测试数据:<br>
+        <span>5,3</span><br>
+        max z = <span>2</span>x1+<span>3</span>x2+<span>0</span>x3+<span>0</span>x4+<span>0</span>x5<br>
+        <span>1</span>x1+<span>2</span>x2+<span>1</span>x3+<span>0</span>x4+<span>0</span>x5=<span>8</span><br>
+        <span>4</span>x1+<span>0</span>x2+<span>0</span>x3+<span>1</span>x4+<span>0</span>x5=<span>16</span><br>
+        <span>0</span>x1+<span>4</span>x2+<span>0</span>x3+<span>0</span>x4+<span>1</span>x5=<span>12</span><br>
+        <span>M 表示 10000</span><br>
+        <span>6,2</span><br>
+        max z =<span>2</span>x1+<span>3</span>x2-<span>5</span>x3-<span>10000</span>x4+<span>0</span>x5-<span>10000</span>x6<br>
+        <span>1</span>x1+<span>1</span>x2+<span>1</span>x3+<span>1</span>x4+<span>0</span>x5+<span>0</span>x6=<span>7</span><br>
+        <span>2</span>x1-<span>5</span>x2+<span>1</span>x3+<span>0</span>x4-<span>1</span>x5+<span>1</span>x6=<span>10</span><br>
+</div>
 </div>
 {% endblock %}
