@@ -98,10 +98,11 @@ def circulate(data):
     data['Xb'][pos_y] = pos_x + 1  # Xb变化
     data['Cb'][pos_y] = data['list0'][pos_x]
 
+# def unsolved(data) #无解
 
 def iteration(rst, i):  # 检验数判断
     data = copy.deepcopy(rst['flag' + str(i)])  # 深度copy
-    if check(data) == False:  # 判断检验数
+    if check(data) == False:  # 判断检验数   && unsolved(data)
         circulate(data)  # 算Theta和换的值 xb Cb
         # ---------------------------------------------------------------
         # 这样很不幸的是上一张表的Theta值和替换掉的xb,Cb传入下一个中去了，后面要写个函数变一下

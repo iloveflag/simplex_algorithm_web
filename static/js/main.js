@@ -139,5 +139,14 @@ function create_table(data) {
         max_x += "x" + Xb_last[j] + "=" + b_last[j] + ";";
     }
     var result = "x的取值为:" + max_x + "<br>最大值z=" + max_z;
+
+    //无穷解
+    var check_last=check[check.length-1];
+    for(var m=0;m<check_last.length;m++){
+        if(check_last[m]==0){
+            result+="且有无穷解";
+            break
+        }
+    }
     document.getElementById('result').innerHTML = result;
 }
